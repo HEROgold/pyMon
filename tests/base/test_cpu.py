@@ -1,24 +1,17 @@
-import unittest
+from hypothesis import given, strategies as st
 from pymon.base.cpu import CPUMeter, CPUStats
 
-class TestCPUStats(unittest.TestCase):
-    def setUp(self):
-        self.stats = CPUStats()
+@given(st.none())
+def test_cpu_stats_validate(_):
+    stats = CPUStats()
+    assert stats.validate()
 
-    def test_validate(self):
-        self.assertTrue(self.stats.validate())
+@given(st.none())
+def test_cpu_meter_validate(_):
+    meter = CPUMeter()
+    assert meter.validate()
 
-class TestCPUMeter(unittest.TestCase):
-    def setUp(self):
-        self.meter = CPUMeter()
-
-    def test_validate(self):
-        with self.assertRaises(NotImplementedError):
-            self.meter.validate()
-
-    def test_render(self):
-        with self.assertRaises(NotImplementedError):
-            self.meter.render()
-
-if __name__ == "__main__":
-    unittest.main()
+@given(st.none())
+def test_cpu_meter_render(_):
+    meter = CPUMeter()
+    assert meter.render()

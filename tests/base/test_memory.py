@@ -1,25 +1,17 @@
-import unittest
+from hypothesis import given, strategies as st
 from pymon.base.memory import MemoryMeter, MemoryStats
 
-class TestMemoryStats(unittest.TestCase):
-    def setUp(self):
-        self.stats = MemoryStats()
+@given(st.none())
+def test_memory_stats_validate(_):
+    stats = MemoryStats()
+    assert stats.validate()
 
-    def test_validate(self):
-        with self.assertRaises(NotImplementedError):
-            self.stats.validate()
+@given(st.none())
+def test_memory_meter_validate(_):
+    meter = MemoryMeter()
+    assert meter.validate()
 
-class TestMemoryMeter(unittest.TestCase):
-    def setUp(self):
-        self.meter = MemoryMeter()
-
-    def test_validate(self):
-        with self.assertRaises(NotImplementedError):
-            self.meter.validate()
-
-    def test_render(self):
-        with self.assertRaises(NotImplementedError):
-            self.meter.render()
-
-if __name__ == "__main__":
-    unittest.main()
+@given(st.none())
+def test_memory_meter_render(_):
+    meter = MemoryMeter()
+    assert meter.render()

@@ -1,25 +1,17 @@
-import unittest
+from hypothesis import given, strategies as st
 from pymon.base.network import NetworkMeter, NetworkStats
 
-class TestNetworkStats(unittest.TestCase):
-    def setUp(self):
-        self.stats = NetworkStats()
+@given(st.none())
+def test_network_stats_validate(_):
+    stats = NetworkStats()
+    assert stats.validate()
 
-    def test_validate(self):
-        with self.assertRaises(NotImplementedError):
-            self.stats.validate()
+@given(st.none())
+def test_network_meter_validate(_):
+    meter = NetworkMeter()
+    assert meter.validate()
 
-class TestNetworkMeter(unittest.TestCase):
-    def setUp(self):
-        self.meter = NetworkMeter()
-
-    def test_validate(self):
-        with self.assertRaises(NotImplementedError):
-            self.meter.validate()
-
-    def test_render(self):
-        with self.assertRaises(NotImplementedError):
-            self.meter.render()
-
-if __name__ == "__main__":
-    unittest.main()
+@given(st.none())
+def test_network_meter_render(_):
+    meter = NetworkMeter()
+    assert meter.render()

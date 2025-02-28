@@ -1,25 +1,17 @@
-import unittest
+from hypothesis import given, strategies as st
 from pymon.base.disk import DiskMeter, DiskStats
 
-class TestDiskStats(unittest.TestCase):
-    def setUp(self):
-        self.stats = DiskStats()
+@given(st.none())
+def test_disk_stats_validate(_):
+    stats = DiskStats()
+    assert stats.validate()
 
-    def test_validate(self):
-        with self.assertRaises(NotImplementedError):
-            self.stats.validate()
+@given(st.none())
+def test_disk_meter_validate(_):
+    meter = DiskMeter()
+    assert meter.validate()
 
-class TestDiskMeter(unittest.TestCase):
-    def setUp(self):
-        self.meter = DiskMeter()
-
-    def test_validate(self):
-        with self.assertRaises(NotImplementedError):
-            self.meter.validate()
-
-    def test_render(self):
-        with self.assertRaises(NotImplementedError):
-            self.meter.render()
-
-if __name__ == "__main__":
-    unittest.main()
+@given(st.none())
+def test_disk_meter_render(_):
+    meter = DiskMeter()
+    assert meter.render()
