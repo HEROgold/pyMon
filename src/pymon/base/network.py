@@ -5,7 +5,7 @@ from pymon.abc.stats import Stats
 from pymon.abc.view_component import ViewComponent
 
 
-class DiskStats(Stats):
+class NetworkStats(Stats):
     def __init__(self) -> None:
         #See https://psutil.readthedocs.io/en/release-3.1.1/#network
         self._ios = net_io_counters(pernic=True)
@@ -17,10 +17,10 @@ class DiskStats(Stats):
     def validate(self) -> bool:
         raise NotImplementedError
 
-class DiskMeter(ViewComponent):
+class NetworkMeter(ViewComponent):
     def __init__(self) -> None:
         super().__init__()
-        self.stats = DiskStats()
+        self.stats = NetworkStats()
 
     def validate(self) -> None:
         self.stats.validate()
